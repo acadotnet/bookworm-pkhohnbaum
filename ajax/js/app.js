@@ -25,8 +25,18 @@ class Book{
  } 
 
  get id(){
-     return id;
+     return this.id;
  }
- get
- 
+ get title(){
+     return this.title;
+ }
+ get author(){
+    return this.author;
+ } 
+ get isbn(){
+     return this.isbn;
+ }
+ get coverUrl(){
+     return this.coverUrl;
+ }
 }
