@@ -4,17 +4,20 @@ $(document).ready(function(){
      $.getJSON({
         url: "./data/books.json",
         success:function(d){
-            console.log(d.books);
+            //console.log(d.books);
             var myBooks = [];
             $.each(d.books, function(i,book){
-                    console.log(book.title);
+                   // console.log(book.title);
                     var newBook = new Book(book.id,book.title,book.author,book.isbn,book.coverUrl);
                     myBooks.push(newBook);
                     
             })
+                var body = $("#bookTable");
+            $.each(myBooks, function(i, myBook){
                 
-            $.each(myBooks, function(i, myBooks){
-                console.log(myBooks);
+                var row = $("<tr>");
+                row.append("<td>" + myBook.title + "</td>");
+                body.append(row);
             })
 
             
@@ -39,18 +42,18 @@ class Book{
  } 
 
  get id(){
-     return this.id;
+     return this._id;
  }
  get title(){
-     return this.title;
+     return this._title;
  }
  get author(){
-    return this.author;
+    return this._author;
  } 
  get isbn(){
-     return this.isbn;
+     return this._isbn;
  }
  get coverUrl(){
-     return this.coverUrl;
+     return this._coverUrl;
  }
 }
