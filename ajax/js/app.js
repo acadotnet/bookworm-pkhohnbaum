@@ -4,7 +4,21 @@ $(document).ready(function(){
      $.getJSON({
         url: "./data/books.json",
         success:function(d){
-            console.log(d);
+            console.log(d.books);
+            var myBooks = [];
+            $.each(d.books, function(i,book){
+                    console.log(book.title);
+                    var newBook = new Book(book.id,book.title,book.author,book.isbn,book.coverUrl);
+                    myBooks.push(newBook);
+                    
+            })
+                
+            $.each(myBooks, function(i, myBooks){
+                console.log(myBooks);
+            })
+
+            
+            
 
         },
         error: function(){
@@ -17,11 +31,11 @@ $(document).ready(function(){
 
 class Book{
  constructor(id, title, author, isbn, coverUrl){
-     this.id=id;
-     this.title=title;
-     this.author=author;
-     this.isbn=isbn;
-     this.coverUrl=coverUrl;
+     this._id=id;
+     this._title=title;
+     this._author=author;
+     this._isbn=isbn;
+     this._coverUrl=coverUrl;
  } 
 
  get id(){
