@@ -16,8 +16,16 @@ $(document).ready(function(){
             $.each(myBooks, function(i, myBook){
                 
                 var row = $("<tr>");
+                row.append("<td>" + myBook.id + "</td>");
+                row.append("<td>" + myBook.coverUrl + "</td>");
                 row.append("<td>" + myBook.title + "</td>");
+                row.append("<td>" + myBook.author + "</td>");
+                row.append("<td>" + myBook.isbn + "</td>");
+        
                 body.append(row);
+
+               
+
             })
 
             
