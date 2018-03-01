@@ -14,15 +14,9 @@ $(document).ready(function(){
             })
                 var body = $("#bookTable");
             $.each(myBooks, function(i, myBook){
+
                 
-                var row = $("<tr>");
-                row.append("<td>" + myBook.id + "</td>");
-                row.append("<td>" + "<img src=" + myBook.coverUrl + " / >" + "</td>");
-                row.append("<td>" + myBook.title + "</td>");
-                row.append("<td>" + myBook.author + "</td>");
-                row.append("<td>" + myBook.isbn + "</td>");
-        
-                body.append(row);
+                toT
 
                
 
@@ -48,20 +42,38 @@ class Book{
      this._isbn=isbn;
      this._coverUrl=coverUrl;
  } 
+ addAuthor(authorName){
+    this._authors.push(authorName);
+ }
 
- get id(){
-     return this._id;
+ toTableRow(){
+     var $tr = $("<tr>");
+     $tr.append("<td>"+ this._id+ "<td>");
+     $tr.append('<td><img src="' + this._coverUrl + "</td>");
+     $tr.append('<td> + <a href"./detail.html?bookId=' + this._id + "</td>");
+     $tr.append('<td>'+ this._authors +"</td>");
+     $tr.append('<td>' + this._isbn + "</td>");
+
+     return $tr;
+
  }
- get title(){
-     return this._title;
- }
- get author(){
-    return this._author;
- } 
- get isbn(){
-     return this._isbn;
- }
- get coverUrl(){
-     return this._coverUrl;
- }
+
+}
+
+class Catolog{
+    constructor(){
+        this._books = []
+    }
+
+    addBook(book){
+        this._books.push();
+    }
+
+    build(target){
+        var $body = $(target);
+
+        $.each(this._books, function(b, book){
+            $tbody.append(book.toTableRow());
+        });
+    }
 }
