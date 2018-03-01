@@ -70,5 +70,11 @@ class Catolog{
             $tbody.append(book.toTableRow());
         });
     }
+
+    getDetails(bookId){
+        $.each(this._books, function(c, id){
+           
+        });
+    }
     
 }
