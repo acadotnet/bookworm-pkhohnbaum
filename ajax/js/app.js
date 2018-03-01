@@ -5,25 +5,19 @@ $(document).ready(function(){
         url: "./data/books.json",
         success:function(d){
             //console.log(d.books);
-            var myBooks = [];
+            var myBooks = new Catolog();
             $.each(d.books, function(i,book){
                    // console.log(book.title);
                     var newBook = new Book(book.id,book.title,book.author,book.isbn,book.coverUrl);
-                    myBooks.push(newBook);
+                    myBooks.addBook(newBook);
+                    
+                    
                     
             })
-                var body = $("#bookTable");
-            $.each(myBooks, function(i, myBook){
-
-                
-                toT
-
-               
-
-            })
+          
 
             
-            
+            myBooks.build("#bookTable");
 
         },
         error: function(){
@@ -43,15 +37,15 @@ class Book{
      this._coverUrl=coverUrl;
  } 
  addAuthor(authorName){
-    this._authors.push(authorName);
+    this._author.push(authorName);
  }
 
  toTableRow(){
      var $tr = $("<tr>");
-     $tr.append("<td>"+ this._id+ "<td>");
-     $tr.append('<td><img src="' + this._coverUrl + "</td>");
-     $tr.append('<td> + <a href"./detail.html?bookId=' + this._id + "</td>");
-     $tr.append('<td>'+ this._authors +"</td>");
+     $tr.append("<td>"+ this._id + "</td>");
+     $tr.append('<td><img src="' + this._coverUrl + '" /></td>');
+     $tr.append('<td><a href="./details.html?bookId=' + this._id + '">' + this._title + '</a></td>');
+     $tr.append('<td>'+ this._author +"</td>");
      $tr.append('<td>' + this._isbn + "</td>");
 
      return $tr;
@@ -66,14 +60,15 @@ class Catolog{
     }
 
     addBook(book){
-        this._books.push();
+        this._books.push(book);
     }
 
     build(target){
-        var $body = $(target);
+        var $tbody = $(target);
 
         $.each(this._books, function(b, book){
             $tbody.append(book.toTableRow());
         });
     }
+    
 }
