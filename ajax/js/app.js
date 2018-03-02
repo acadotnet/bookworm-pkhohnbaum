@@ -19,10 +19,10 @@ $(document).ready(function(){
 
             
             myBooks.build("#bookTable");
-            var currentBook = 3;
+            var currentBook = getQueryParameterByName("bookId");
            
-            var bookDetail = myBooks.getDetails(currentBook)
-            bookdetail.toDetailsPage();
+            var bookDetail = myBooks.getDetails(currentBook);
+            bookDetail.toDetailsPage();
             //$("#bookTitle").val(bookDetail._title);
           
 
