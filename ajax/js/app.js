@@ -4,6 +4,7 @@ $(document).ready(function(){
      $.getJSON({
         url: "./data/books.json",
         success:function(d){
+            
             //console.log(d.books);
             var myBooks = new Catolog();
             $.each(d.books, function(i,book){
@@ -18,6 +19,12 @@ $(document).ready(function(){
 
             
             myBooks.build("#bookTable");
+            var currentBook = 3;
+           
+            var bookDetail = myBooks.getDetails(currentBook)
+            bookdetail.toDetailsPage();
+            //$("#bookTitle").val(bookDetail._title);
+          
 
         },
         error: function(){
@@ -39,7 +46,16 @@ class Book{
  addAuthor(authorName){
     this._author.push(authorName);
  }
-
+get id(){
+    return this._id;
+}
+toDetailsPage(){
+    $("#bookTitle").val(this._title);
+    $("#bookId").val(this._id);
+    $("#bookISBN").val(this._isbn);
+    $("#bookUrl").val(this._coverUrl);
+    $("#bookAuthor").val(bookDetail._title);
+}
  toTableRow(){
      var $tr = $("<tr>");
      $tr.append("<td>"+ this._id + "</td>");
@@ -72,8 +88,10 @@ class Catolog{
     }
 
     getDetails(bookId){
-        $.each(this._books, function(c, id){
-           
+        $.each(this._books, function(c, book){
+           if(book.id == bookId){
+               return book;
+           } 
         });
     }
     
