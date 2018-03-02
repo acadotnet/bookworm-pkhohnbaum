@@ -15,14 +15,16 @@ $(document).ready(function(){
                     
                     
             })
-          
-
-            
-            myBooks.build("#bookTable");
-            var currentBook = getQueryParameterByName("bookId");
            
+            
+            var currentBook = getQueryParameterByName("bookId");
+            if(currentBook){
             var bookDetail = myBooks.getDetails(currentBook);
+            console.log(bookDetail);
             bookDetail.toDetailsPage();
+            } else{
+                myBooks.build("#bookTable");
+            }
             //$("#bookTitle").val(bookDetail._title);
           
 
@@ -53,8 +55,8 @@ toDetailsPage(){
     $("#bookTitle").val(this._title);
     $("#bookId").val(this._id);
     $("#bookISBN").val(this._isbn);
-    $("#bookUrl").val(this._coverUrl);
-    $("#bookAuthor").val(bookDetail._title);
+    $("#urlCode").append('<img src="' + this._coverUrl + '" />');
+    $("#bookAuthor").val(this._author);
 }
  toTableRow(){
      var $tr = $("<tr>");
@@ -88,11 +90,17 @@ class Catolog{
     }
 
     getDetails(bookId){
+        var myBook;
         $.each(this._books, function(c, book){
-           if(book.id == bookId){
-               return book;
+           
+            if(book.id == bookId){
+               
+                myBook = book;
+
            } 
+        
         });
+        return myBook;
     }
     
 }
